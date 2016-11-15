@@ -55,11 +55,15 @@ function showTest ($jsonDecoded) {
     echo "<form method=\"post\">";
 
     foreach ($jsonDecoded as $question) {
-        $usersAnswer = $_POST["answer_$question[id]"];
+        if (!empty($_POST)) {
+            $usersAnswer = $_POST["answer_$question[id]"];
+        } else {
+            $usersAnswer = "";
+        }
         echo "<dl><dt><label for=\"answer_$question[id]\">Вопрос № $question[id]. $question[question]</label></dt>";
         echo "<dd><input id=\"answer_$question[id]\" name=\"answer_$question[id]\" value=\"$usersAnswer\"/></dd></dl>";
         if (notAllFieldsFilled($jsonDecoded) !== true) {
-            checkAnswers ($usersAnswer, $question[answer]);
+            checkAnswers ($usersAnswer, $question['question']);
         }
     }
 
@@ -76,7 +80,7 @@ function showTest ($jsonDecoded) {
 
 }
 
-
+/*
 function json_error () {
     switch(json_last_error()) {
         case JSON_ERROR_NONE:
@@ -102,4 +106,4 @@ function json_error () {
             break;
     }
 }
-?>
+*/
