@@ -63,7 +63,7 @@ function showTest ($jsonDecoded) {
         echo "<dl><dt><label for=\"answer_$question[id]\">Вопрос № $question[id]. $question[question]</label></dt>";
         echo "<dd><input id=\"answer_$question[id]\" name=\"answer_$question[id]\" value=\"$usersAnswer\"/></dd></dl>";
         if (notAllFieldsFilled($jsonDecoded) !== true) {
-            checkAnswers ($usersAnswer, $question['question']);
+            checkAnswers ($usersAnswer, $question['answer']);
         }
     }
 
